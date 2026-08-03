@@ -412,29 +412,36 @@
             width: 100%;
             max-width: 500px;
             margin: 0 auto;
-            background-color: rgba(0, 0, 0, 0.25);
             border-radius: 12px;
-            overflow: hidden;
             border: 1px solid var(--border-color);
             box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-            transition: var(--transition-smooth);
+            ransition: var(--transition-smooth);
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
+            overflow-x: auto;
+            overflow-y: hidden;
+            white-space: nowrap;
+            background-color: rgba(0, 0, 0, 0.25);
+            -webkit-overflow-scrolling: touch;
         }
 
         .fb-box:hover {
             border-color: rgba(var(--accent-gold-rgb), 0.3);
             box-shadow: 
-                0 15px 40px -15px rgba(0,0,0,0.8),
-                0 0 20px rgba(var(--accent-gold-rgb), 0.05);
+            0 15px 40px -15px rgba(0,0,0,0.8),
+            0 0 20px rgba(var(--accent-gold-rgb), 0.05);
         }
 
         .fb-box iframe {
-            width: 100% !important;
+            width: 750px !important;
             height: 800px !important;
             border: none;
             display: block;
             background: transparent;
+        }
+
+        .fb-box > * {
+            flex-shrink: 0;
         }
 
         /* Regulamin Section */
