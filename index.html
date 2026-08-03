@@ -419,8 +419,8 @@
         }
 
         /* FB Section */
-        .fb-container {
-            max-width: 540px;
+        .fb-box {
+            max-width: 500px;
             margin: 0 auto;
             background-color: rgba(0, 0, 0, 0.25);
             border-radius: 12px;
@@ -430,7 +430,7 @@
             transition: var(--transition-smooth);
         }
 
-        .fb-container:hover {
+        .fb-box:hover {
             border-color: rgba(var(--accent-gold-rgb), 0.3);
             box-shadow: 
                 0 15px 40px -15px rgba(0,0,0,0.8),
@@ -439,7 +439,7 @@
 
         .fb-box iframe {
             width: 100% !important;
-            height: 800px !important;
+            height: 900px !important;
             border: none;
             display: block;
         }
@@ -751,15 +751,14 @@
                 <p style="color: hsl(var(--text-muted)); font-size: 0.95rem;">Śledź najnowsze wydarzenia, treningi i relacje z naszego oficjalnego profilu Facebook:</p>
             </div>
             
-            <div class="fb-container" style="max-width: 500px;">
-                <div class="fb-box">
-                    <iframe 
-                        src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fskbppogranicznik%2F&tabs=timeline&width=500&height=800&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" 
-                        scrolling="yes" 
-                        allowfullscreen="true" 
-                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
-                    </iframe>
-                </div>
+            <div class="fb-box">
+                <iframe 
+                    src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fskbppogranicznik%2F&tabs=timeline&width=500&height=900&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" 
+                    scrolling="yes" 
+                    frameborder="0" 
+                    allowfullscreen="true" 
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+                </iframe>
             </div>
         </section>
 
