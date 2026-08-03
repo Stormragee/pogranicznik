@@ -433,26 +433,34 @@
         }
 
         .fb-box iframe {
-            width: min(750px, 100%) !important;
+            width: 750px !important;
+            max-width: 100vw;
             height: 800px !important;
             border: none;
             display: block;
             background: transparent;
         }
 
+        @media (max-width: 768px) {
+            .fb-box iframe {
+                width: 550px !important;
+                max-width: none;
+            }
+        }
+
         .fb-box > * {
             flex-shrink: 0;
         }
 
-        .fb-box {
-            scrollbar-width: none;
-            -ms-overflow-style: none;
+        @media (min-width: 769px) {
+            .fb-box {
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+            }
+            .fb-box::-webkit-scrollbar {
+                display: none;
+            }
         }
-        .fb-box::-webkit-scrollbar {
-            display: none;
-        }
-
-
         /* Regulamin Section */
         .regulamin-list {
             list-style: none;
@@ -779,7 +787,7 @@
                     <div class="card-icon-container">
                         <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
                     </div>
-                    <h3>Edukacja i Bezpieczeństwo</h3>
+                    <h3>Edukacja dla Bezpieczeństwa</h3>
                     <p>Prowadzenie profesjonalnych szkoleń z zakresu edukacji od bezpieczeństwa, bezpiecznej obsługi broni palnej oraz udzielania pierwszej pomocy.</p>
                 </div>
                 
