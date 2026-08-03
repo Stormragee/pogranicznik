@@ -407,7 +407,6 @@
             font-size: 0.95rem;
             line-height: 1.6;
         }
-
         .fb-box {
             width: 100%;
             max-width: 500px;
@@ -423,17 +422,18 @@
             white-space: nowrap;
             background-color: rgba(0, 0, 0, 0.25);
             -webkit-overflow-scrolling: touch;
+            overscroll-behavior-x: contain; 
         }
 
         .fb-box:hover {
             border-color: rgba(var(--accent-gold-rgb), 0.3);
             box-shadow: 
-            0 15px 40px -15px rgba(0,0,0,0.8),
-            0 0 20px rgba(var(--accent-gold-rgb), 0.05);
+                0 15px 40px -15px rgba(0,0,0,0.8),
+                0 0 20px rgba(var(--accent-gold-rgb), 0.05);
         }
 
         .fb-box iframe {
-            width: 750px !important;
+            width: min(750px, 100%) !important;
             height: 800px !important;
             border: none;
             display: block;
@@ -443,6 +443,15 @@
         .fb-box > * {
             flex-shrink: 0;
         }
+
+        .fb-box {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .fb-box::-webkit-scrollbar {
+            display: none;
+        }
+
 
         /* Regulamin Section */
         .regulamin-list {
