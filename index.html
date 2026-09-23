@@ -110,7 +110,8 @@
                                 src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fskbppogranicznik%2F&tabs=timeline&width=500&height=550&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
                                 width="500" height="550" style="border:none;overflow:hidden;" scrolling="no"
                                 frameborder="0" allowfullscreen="true"
-                                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+                                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                                title="Facebook Page Plugin - Pogranicznik">
                             </iframe>
 
                             <!-- MODUŁ FALLBACK ADBLOCK (WYŚWIETLANY JEŚLI ADBLOCK ZABLOKUJE WIDŻET LUB ZDJĘCIA) -->
@@ -471,10 +472,13 @@
             if (!fbIframe || !fbFallback) return;
 
             var resolved = false;
+            var networkVerified = false;
+            var iframeLoaded = false;
 
             function activateFallback() {
                 if (resolved) return;
                 resolved = true;
+                if (timeoutTimer) clearTimeout(timeoutTimer);
                 if (fbLoader) fbLoader.style.display = 'none';
                 if (fbIframe) {
                     fbIframe.style.display = 'none';
@@ -487,63 +491,108 @@
             function activateWidget() {
                 if (resolved) return;
                 resolved = true;
-                if (fbLoader) fbLoader.style.display = 'none';
+                if (timeoutTimer) clearTimeout(timeoutTimer);
+                if (fbLoader) {
+                    fbLoader.style.pointerEvents = 'none';
+                    fbLoader.style.opacity = '0';
+                    setTimeout(function () {
+                        fbLoader.style.display = 'none';
+                    }, 300);
+                }
                 if (fbIframe) fbIframe.style.display = 'block';
+                if (fbFallback) fbFallback.style.display = 'none';
+                if (fbCard) fbCard.classList.remove('fb-fallback-active');
             }
 
-            // 1. Sprawdzenie blokowania pobierania zdjęć/zasobów Facebooka przez CDN
-            var probeImg = new Image();
+            function tryActivateWidget() {
+                if (resolved) return;
+                if (!iframeLoaded || !networkVerified) return;
+
+                // Sprawdzenie czy filtr kosmetyczny AdBlocka nie ukrył ramki
+                try {
+                    var comp = window.getComputedStyle(fbIframe);
+                    if (comp.display === 'none' || comp.visibility === 'hidden' || fbIframe.offsetHeight === 0) {
+                        activateFallback();
+                        return;
+                    }
+                } catch (e) { }
+
+                activateWidget();
+            }
+
+            // Timeout bezpieczeństwa - jeśli widżet nie załaduje się lub zawiśnie wczytywanie w ciągu 3.5s -> przełącz na fallback
             var timeoutTimer = setTimeout(function () {
-                // Jeśli w ciągu 3.5s zasób nie odpowiedział, AdBlock lub zapora zablokowała żądanie
-                activateFallback();
+                if (!resolved) {
+                    activateFallback();
+                }
             }, 3500);
 
-            probeImg.onload = function () {
-                clearTimeout(timeoutTimer);
-            };
+            // 1. Zdarzenie błędu sieciowego ramki (np. zablokowanie przez zapory lub rozszerzenia)
+            fbIframe.addEventListener('error', function () {
+                activateFallback();
+            });
 
+            // 2. Obsługa załadowania ramki
+            fbIframe.addEventListener('load', function () {
+                setTimeout(function () {
+                    if (resolved) return;
+
+                    // Sprawdzenie czy przeglądarka lub rozszerzenie nie podstawiło pustego dokumentu
+                    try {
+                        var doc = fbIframe.contentDocument || (fbIframe.contentWindow && fbIframe.contentWindow.document);
+                        if (doc) {
+                            var loc = '';
+                            try { loc = fbIframe.contentWindow.location.href; } catch (e) { }
+                            if (loc === 'about:blank' || (!doc.body || (doc.body.children.length === 0 && !doc.body.textContent.trim()))) {
+                                activateFallback();
+                                return;
+                            }
+                        }
+                    } catch (crossOriginErr) {
+                        // Może być cross-origin z Facebooka LUB chrome-error: strony błędu przeglądarki.
+                        // Wymagamy potwierdzenia dostępności sieciowej (networkVerified) zanim uznamy widżet za załadowany.
+                    }
+
+                    iframeLoaded = true;
+                    tryActivateWidget();
+                }, 100);
+            });
+
+            // 3. Sprawdzenie dostępności sieciowej zasobów Facebooka (wykrywanie blokady AdBlocka / zapory)
+            // Sonda 1: Obraz favicon z oficjalnej domeny facebook.com
+            var probeImg = new Image();
+            probeImg.onload = function () {
+                networkVerified = true;
+                tryActivateWidget();
+            };
             probeImg.onerror = function () {
-                clearTimeout(timeoutTimer);
-                // AdBlock zablokował pobieranie obrazów z domeny Facebooka
+                // AdBlock lub zapora zablokowała domenę facebook.com
                 activateFallback();
             };
+            probeImg.src = 'https://www.facebook.com/favicon.ico?_=' + Date.now();
 
-            probeImg.src = 'https://static.xx.fbcdn.net/rsrc.php/v3/y4/r/DgUtRo7PqVO.png?t=' + Date.now();
-
-            // 2. Sprawdzenie blokowania skryptów domen facebookowych przez reguły sieciowe
+            // Sonda 2: fetch do domeny connect.facebook.net (blokowanej domyślnie przez filtry AdBlocka / EasyPrivacy)
             if (window.fetch) {
                 fetch('https://connect.facebook.net/pl_PL/sdk.js', { mode: 'no-cors' })
+                    .then(function () {
+                        networkVerified = true;
+                        tryActivateWidget();
+                    })
                     .catch(function () {
-                        clearTimeout(timeoutTimer);
+                        // AdBlock zablokował skrypt sieciowy Facebooka
                         activateFallback();
                     });
             }
 
-            // 3. Obsługa zdarzeń i reguł kosmetycznych AdBlocka na elemencie iframe
-            fbIframe.addEventListener('error', function () {
-                clearTimeout(timeoutTimer);
-                activateFallback();
-            });
-
-            fbIframe.addEventListener('load', function () {
-                setTimeout(function () {
-                    try {
-                        var comp = window.getComputedStyle(fbIframe);
-                        if (comp.display === 'none' || comp.visibility === 'hidden' || fbIframe.offsetHeight === 0) {
-                            clearTimeout(timeoutTimer);
-                            activateFallback();
-                        } else if (!resolved) {
-                            clearTimeout(timeoutTimer);
-                            activateWidget();
-                        }
-                    } catch (err) {
-                        if (!resolved) {
-                            clearTimeout(timeoutTimer);
-                            activateWidget();
-                        }
+            // 4. Sprawdzenie czy reguły kosmetyczne AdBlocka nie ukryły ramki od razu na starcie
+            setTimeout(function () {
+                if (!resolved) {
+                    var comp = window.getComputedStyle(fbIframe);
+                    if (comp.display === 'none' || comp.visibility === 'hidden') {
+                        activateFallback();
                     }
-                }, 200);
-            });
+                }
+            }, 250);
         })();
     </script>
 </body>
