@@ -441,6 +441,212 @@ section::before {
     box-shadow: 0 0 20px rgba(var(--accent-gold-rgb), 0.3);
 }
 
+/* Sekcja Aktualności - Layout wyśrodkowany & Moduł Facebook */
+.news-layout {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    width: 100%;
+}
+
+.news-cards-col {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.news-cards-col .news-card {
+    flex: 1;
+}
+
+.news-fb-col {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 500px;
+}
+
+.fb-widget-card {
+    background-color: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 540px;
+    transition: var(--transition-smooth);
+    box-shadow: var(--card-shadow);
+}
+
+.fb-widget-card:hover {
+    border-color: var(--border-hover);
+}
+
+.fb-card-header {
+    background: rgba(8, 16, 11, 0.92);
+    border-bottom: 1px solid var(--border-color);
+    padding: 16px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.fb-header-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: hsl(var(--accent-gold));
+    font-family: 'Cinzel', serif;
+    font-size: 0.98rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.fb-header-title svg {
+    color: #1877f2;
+}
+
+.fb-live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.74rem;
+    color: hsl(var(--text-muted));
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.fb-pulse-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #22c55e;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #22c55e;
+    animation: fb-pulse 2s infinite;
+}
+
+@keyframes fb-pulse {
+    0% { transform: scale(0.95); opacity: 0.8; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+.fb-card-body {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #060c08;
+    overflow: hidden;
+    min-height: 480px;
+}
+
+/* Loader wczytywania */
+.fb-loader {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    background: hsl(var(--bg-card));
+    z-index: 2;
+    color: hsl(var(--text-muted));
+    font-size: 0.9rem;
+    transition: opacity 0.3s ease;
+}
+
+.fb-spinner {
+    width: 38px;
+    height: 38px;
+    border: 3px solid rgba(var(--accent-gold-rgb), 0.15);
+    border-top-color: hsl(var(--accent-gold));
+    border-radius: 50%;
+    animation: rotate-clockwise 1s linear infinite;
+}
+
+/* Widżet Iframe */
+.fb-page-iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 520px;
+    border: none;
+    overflow: hidden;
+    display: block;
+    background: #ffffff;
+}
+
+/* Fallback AdBlock */
+.fb-adblock-fallback {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 28px;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 25%, rgba(20, 35, 27, 0.7) 0%, rgba(6, 12, 9, 0.96) 100%);
+}
+
+.fb-adblock-icon-box {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background: rgba(var(--accent-gold-rgb), 0.1);
+    border: 1px solid rgba(var(--accent-gold-rgb), 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+    color: hsl(var(--accent-gold));
+    box-shadow: 0 0 25px rgba(var(--accent-gold-rgb), 0.15);
+}
+
+.fb-adblock-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.25rem;
+    color: hsl(var(--text-light));
+    margin-bottom: 14px;
+}
+
+.fb-adblock-desc {
+    font-size: 0.93rem;
+    color: hsl(var(--text-muted));
+    line-height: 1.65;
+    max-width: 440px;
+    margin-bottom: 26px;
+}
+
+.fb-adblock-desc strong {
+    color: hsl(var(--accent-gold));
+}
+
+.fb-fallback-btn {
+    width: 100%;
+    max-width: 360px;
+    justify-content: center;
+    padding: 14px 24px;
+    text-align: center;
+}
+
+.fb-adblock-hint {
+    margin-top: 20px;
+    font-size: 0.78rem;
+    color: hsl(var(--text-dark));
+    line-height: 1.5;
+    max-width: 380px;
+}
+
+
 /* Grid O nas / Cele */
 .grid-layout {
     display: grid;

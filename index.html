@@ -61,53 +61,99 @@
 
     <!-- MAIN WRAPPER -->
     <div class="main-container">
-        
+
         <!-- SECTION: AKTUALNOŚCI -->
         <section id="aktualnosci">
-            <div class="section-header"
-                style="justify-content: center; text-align: center; flex-direction: column; gap: 8px;">
-                <h2 style="font-size: 1.9rem;">Aktualności</h2>
-                <p style="color: hsl(var(--text-muted)); font-size: 0.95rem;">Wydarzenia, fotorelacje ze strzelnicy i komunikaty statutowe:</p>
+            <div class="section-header">
+                <svg class="section-header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2" />
+                    <path d="M18 14h-8" />
+                    <path d="M15 18h-5" />
+                    <path d="M10 6h8v4h-8V6Z" />
+                </svg>
+                <h2>Aktualności</h2>
             </div>
-            
-            <div class="news-grid">
-                <!-- KAFELEK 1: TRENINGI I STRZELNICA -->
-                <article class="news-card">
-                    <div class="news-img-box">
-                        <img src="logo.png" alt="Treningi i zawody strzeleckie">
-                    </div>
-                    <div class="news-body">
-                        <span class="news-tag">Relacja & Zdjęcia</span>
-                        <h3>Treningi strzeleckie i zawody klubowe</h3>
-                        <p>Najnowsze relacje fotograficzne ze spotkań na Strzelnicy Chynowo, wyniki rywalizacji oraz harmonogramy najbliższych strzelań.</p>
-                        <a href="https://www.facebook.com/skbppogranicznik/" target="_blank" rel="noopener noreferrer" class="news-link">
-                            Zobacz galerię na Facebooku &rarr;
-                        </a>
-                    </div>
-                </article>
+            <p style="color: hsl(var(--text-muted)); font-size: 0.95rem; margin-top: -15px; margin-bottom: 25px;">
+                Wydarzenia, fotorelacje ze strzelnicy, komunikaty klubowe i oficjalny profil społecznościowy:
+            </p>
 
-                <!-- KAFELEK 2: KOLEKCJONERSTWO I UOBIA -->
-                <article class="news-card">
-                    <div class="news-img-box">
-                        <img src="logo.png" alt="Działalność kolekcjonerska">
-                    </div>
-                    <div class="news-body">
-                        <span class="news-tag">Komunikat</span>
-                        <h3>Kolekcjonerstwo broni i zaświadczenia</h3>
-                        <p>Informacje dla członków stowarzyszenia dotyczące procedur uzyskiwania zaświadczeń statutowych (Art. 10 UoBiA) oraz ochrony zabytków oręża.</p>
-                        <a href="https://www.facebook.com/skbppogranicznik/" target="_blank" rel="noopener noreferrer" class="news-link">
-                            Więcej informacji na profilu &rarr;
-                        </a>
-                    </div>
-                </article>
-            </div>
+            <div class="news-layout">
+                <div class="news-fb-col">
+                    <div class="fb-widget-card" id="fb-widget-card">
+                        <!-- NAGŁÓWEK KARTY FB -->
+                        <div class="fb-card-header">
+                            <div class="fb-header-title">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                                </svg>
+                                <span>Facebook / Pogranicznik</span>
+                            </div>
+                            <div class="fb-live-badge">
+                                <span class="fb-pulse-dot"></span>
+                                <span>Na żywo</span>
+                            </div>
+                        </div>
 
-            <!-- PRZYCISK PRZEJŚCIA DO OFICJALNEGO PROFILU -->
-            <div class="news-bottom-action">
-                <a href="https://www.facebook.com/skbppogranicznik/" target="_blank" rel="noopener noreferrer" class="news-main-fb-btn">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-                    Przejdź do naszego profilu na Facebooku
-                </a>
+                        <!-- CIAŁO KARTY -->
+                        <div class="fb-card-body" id="fb-card-body">
+                            <!-- LOADER WCZYTYWANIA -->
+                            <div class="fb-loader" id="fb-loader">
+                                <div class="fb-spinner"></div>
+                                <span>Wczytywanie wpisów z Facebooka...</span>
+                            </div>
+
+                            <!-- IFRAME WIDŻETU FACEBOOK -->
+                            <iframe id="fb-widget-iframe" class="fb-page-iframe"
+                                src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fskbppogranicznik%2F&tabs=timeline&width=500&height=550&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+                                width="500" height="550" style="border:none;overflow:hidden;" scrolling="no"
+                                frameborder="0" allowfullscreen="true"
+                                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+                            </iframe>
+
+                            <!-- MODUŁ FALLBACK ADBLOCK (WYŚWIETLANY JEŚLI ADBLOCK ZABLOKUJE WIDŻET LUB ZDJĘCIA) -->
+                            <div class="fb-adblock-fallback" id="fb-fallback-container">
+                                <div class="fb-adblock-icon-box">
+                                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                                        <line x1="12" y1="8" x2="12" y2="12" />
+                                        <line x1="12" y1="16" x2="12.01" y2="16" />
+                                    </svg>
+                                </div>
+                                <h3 class="fb-adblock-title">Wpisy z profilu Facebook</h3>
+                                <p class="fb-adblock-desc">
+                                    Widżet oraz zdjęcia z Facebooka zostały zablokowane przez Twoje rozszerzenie
+                                    blokujące reklamy (np. <strong>AdBlock</strong>, <strong>uBlock Origin</strong> lub
+                                    ochronę przeglądarki).
+                                    <br><br>
+                                    Wszystkie bieżące fotorelacje, zapowiedzi zawodów oraz komunikaty możesz bez
+                                    przeszkód przeglądać bezpośrednio na naszym oficjalnym profilu:
+                                </p>
+                                <a href="https://www.facebook.com/skbppogranicznik/" target="_blank"
+                                    rel="noopener noreferrer" class="news-main-fb-btn fb-fallback-btn">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                            d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                                    </svg>
+                                    Przejdź do profilu na Facebooku
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                        <polyline points="15 3 21 3 21 9" />
+                                        <line x1="10" y1="14" x2="21" y2="3" />
+                                    </svg>
+                                </a>
+                                <p class="fb-adblock-hint">
+                                    Wskazówka: Aby widzieć posty bezpośrednio na stronie, możesz wyłączyć blokowanie dla
+                                    tej witryny.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -414,6 +460,92 @@
         <p>Wszelkie prawa zastrzeżone.</p>
     </footer>
 
+    <!-- SKRYPT DETEKCJI ADBLOCKA I OBSŁUGI WIDŻETU FACEBOOK -->
+    <script>
+        (function () {
+            var fbCard = document.getElementById('fb-widget-card');
+            var fbLoader = document.getElementById('fb-loader');
+            var fbIframe = document.getElementById('fb-widget-iframe');
+            var fbFallback = document.getElementById('fb-fallback-container');
+
+            if (!fbIframe || !fbFallback) return;
+
+            var resolved = false;
+
+            function activateFallback() {
+                if (resolved) return;
+                resolved = true;
+                if (fbLoader) fbLoader.style.display = 'none';
+                if (fbIframe) {
+                    fbIframe.style.display = 'none';
+                    try { fbIframe.src = 'about:blank'; } catch (e) { }
+                }
+                fbFallback.style.display = 'flex';
+                if (fbCard) fbCard.classList.add('fb-fallback-active');
+            }
+
+            function activateWidget() {
+                if (resolved) return;
+                resolved = true;
+                if (fbLoader) fbLoader.style.display = 'none';
+                if (fbIframe) fbIframe.style.display = 'block';
+            }
+
+            // 1. Sprawdzenie blokowania pobierania zdjęć/zasobów Facebooka przez CDN
+            var probeImg = new Image();
+            var timeoutTimer = setTimeout(function () {
+                // Jeśli w ciągu 3.5s zasób nie odpowiedział, AdBlock lub zapora zablokowała żądanie
+                activateFallback();
+            }, 3500);
+
+            probeImg.onload = function () {
+                clearTimeout(timeoutTimer);
+            };
+
+            probeImg.onerror = function () {
+                clearTimeout(timeoutTimer);
+                // AdBlock zablokował pobieranie obrazów z domeny Facebooka
+                activateFallback();
+            };
+
+            probeImg.src = 'https://static.xx.fbcdn.net/rsrc.php/v3/y4/r/DgUtRo7PqVO.png?t=' + Date.now();
+
+            // 2. Sprawdzenie blokowania skryptów domen facebookowych przez reguły sieciowe
+            if (window.fetch) {
+                fetch('https://connect.facebook.net/pl_PL/sdk.js', { mode: 'no-cors' })
+                    .catch(function () {
+                        clearTimeout(timeoutTimer);
+                        activateFallback();
+                    });
+            }
+
+            // 3. Obsługa zdarzeń i reguł kosmetycznych AdBlocka na elemencie iframe
+            fbIframe.addEventListener('error', function () {
+                clearTimeout(timeoutTimer);
+                activateFallback();
+            });
+
+            fbIframe.addEventListener('load', function () {
+                setTimeout(function () {
+                    try {
+                        var comp = window.getComputedStyle(fbIframe);
+                        if (comp.display === 'none' || comp.visibility === 'hidden' || fbIframe.offsetHeight === 0) {
+                            clearTimeout(timeoutTimer);
+                            activateFallback();
+                        } else if (!resolved) {
+                            clearTimeout(timeoutTimer);
+                            activateWidget();
+                        }
+                    } catch (err) {
+                        if (!resolved) {
+                            clearTimeout(timeoutTimer);
+                            activateWidget();
+                        }
+                    }
+                }, 200);
+            });
+        })();
+    </script>
 </body>
 
 </html>
