@@ -56,24 +56,44 @@
 
     <!-- MAIN WRAPPER -->
     <div class="main-container">
+<!-- SECTION: FACEBOOK TIMELINE -->
+<section id="aktualnosci">
+    <div class="section-header" style="justify-content: center; text-align: center; flex-direction: column; gap: 8px;">
+        <h2 style="font-size: 1.9rem;">Aktualności</h2>
+        <p style="color: hsl(var(--text-muted)); font-size: 0.95rem;">Śledź najnowsze wydarzenia i relacje z naszego oficjalnego profilu Facebook:</p>
+    </div>
+    
+    <div class="timeline-container">
+        <!-- Wizytówka zastępcza (widoczna pod spodem, gdy adblock zablokuje iframe) -->
+        <div class="timeline-fallback">
+            <div class="fallback-badge">
+                <img src="logo.png" alt="Logo Pogranicznik" class="fallback-avatar">
+                <div class="fallback-info">
+                    <h3>SKBP „POGRANICZNIK”</h3>
+                    <span>Oficjalny profil Facebook</span>
+                </div>
+            </div>
 
-        <!-- SECTION: FACEBOOK TIMELINE -->
-        <section id="aktualnosci">
-            <div class="section-header" style="justify-content: center; text-align: center; flex-direction: column; gap: 8px;">
-                <h2 style="font-size: 1.9rem;">Aktualności</h2>
-                <p style="color: hsl(var(--text-muted)); font-size: 0.95rem;">Śledź najnowsze wydarzenia i relacje z naszego oficjalnego profilu Facebook:</p>
-            </div>
-            
-            <div class="fb-box">
-                <iframe 
-                    src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fskbppogranicznik%2F&tabs=timeline&width=500&height=800&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" 
-                    scrolling="yes" 
-                    frameborder="0" 
-                    allowfullscreen="true" 
-                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
-                </iframe>
-            </div>
-        </section>
+            <p class="fallback-text">
+                Najnowsze relacje ze strzelnicy, komunikaty oraz galerie zdjęć publikujemy na bieżąco na naszym fanpage'u.
+            </p>
+
+            <a href="https://www.facebook.com/skbppogranicznik/" target="_blank" rel="noopener noreferrer" class="fallback-btn">
+                Zobacz profil na Facebooku &rarr;
+            </a>
+        </div>
+
+        <!-- Ramka Facebooka (przykrywa wizytówkę, jeśli adblocker jest wyłączony) -->
+        <iframe 
+            src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fskbppogranicznik%2F&tabs=timeline&width=500&height=800&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" 
+            class="timeline-frame"
+            scrolling="yes" 
+            frameborder="0" 
+            allowfullscreen="true" 
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+        </iframe>
+    </div>
+</section>
 
         <!-- SECTION: CELE STATUTOWE -->
         <section id="cele">
@@ -208,7 +228,7 @@
                             </div>
                             <div class="info-details">
                                 <strong>Numer konta bankowego</strong>
-                                <span>00 0000 0000 0000 0000 0000 0000</span>
+                                <span>05 9383 0007 4211 7926 2000 0010</span>
                             </div>
                         </div>
                         <div class="info-group">
