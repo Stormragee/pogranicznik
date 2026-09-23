@@ -316,6 +316,131 @@ section::before {
     height: 28px;
 }
 
+/* Sekcja Aktualności / Kafelki */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+    margin-top: 15px;
+}
+
+.news-card {
+    background-color: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition-smooth);
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--border-hover);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+}
+
+.news-img-box {
+    width: 100%;
+    height: 190px;
+    background: #08100b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.news-img-box img {
+    max-height: 140px;
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.4s ease;
+}
+
+.news-card:hover .news-img-box img {
+    transform: scale(1.08);
+}
+
+.news-body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.news-tag {
+    font-size: 0.78rem;
+    color: hsl(var(--accent-gold));
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.news-body h3 {
+    font-size: 1.15rem;
+    color: hsl(var(--text-light));
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.news-body p {
+    font-size: 0.92rem;
+    color: hsl(var(--text-muted));
+    line-height: 1.6;
+    margin-bottom: 22px;
+    flex-grow: 1;
+}
+
+.news-link {
+    color: hsl(var(--accent-gold));
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.92rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: var(--transition-smooth);
+    margin-top: auto;
+}
+
+.news-link:hover {
+    color: #ffffff;
+    gap: 10px;
+    text-shadow: 0 0 10px rgba(var(--accent-gold-rgb), 0.4);
+}
+
+.news-bottom-action {
+    margin-top: 35px;
+    text-align: center;
+}
+
+.news-main-fb-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 30px;
+    background: rgba(20, 35, 27, 0.7);
+    border: 1px solid rgba(var(--accent-gold-rgb), 0.4);
+    border-radius: 10px;
+    color: hsl(var(--accent-gold));
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.98rem;
+    transition: var(--transition-smooth);
+}
+
+.news-main-fb-btn:hover {
+    background: rgba(var(--accent-gold-rgb), 0.15);
+    border-color: hsl(var(--accent-gold));
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(var(--accent-gold-rgb), 0.3);
+}
+
 /* Grid O nas / Cele */
 .grid-layout {
     display: grid;
@@ -395,61 +520,6 @@ section::before {
     color: hsl(var(--text-muted));
     font-size: 0.95rem;
     line-height: 1.6;
-}
-
-.fb-box {
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
-    border-radius: 12px;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-    transition: var(--transition-smooth);
-    display: flex;
-    justify-content: flex-start;
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: nowrap;
-    background-color: rgba(0, 0, 0, 0.25);
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior-x: contain; 
-}
-
-.fb-box:hover {
-    border-color: rgba(var(--accent-gold-rgb), 0.3);
-    box-shadow: 
-        0 15px 40px -15px rgba(0,0,0,0.8),
-        0 0 20px rgba(var(--accent-gold-rgb), 0.05);
-}
-
-.fb-box iframe {
-    width: 750px !important;
-    max-width: 100vw;
-    height: 800px !important;
-    border: none;
-    display: block;
-    background: transparent;
-}
-
-@media (max-width: 768px) {
-    .fb-box iframe {
-        width: 550px !important;
-        max-width: none;
-    }
-}
-
-.fb-box > * {
-    flex-shrink: 0;
-}
-
-@media (min-width: 769px) {
-    .fb-box {
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-    }
-    .fb-box::-webkit-scrollbar {
-        display: none;
-    }
 }
 
 /* Regulamin Section */
@@ -690,8 +760,5 @@ footer p {
     }
     section {
         padding: 25px 15px;
-    }
-    .fb-box iframe {
-        height: 650px !important;
     }
 }
