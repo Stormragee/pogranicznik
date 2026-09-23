@@ -57,31 +57,51 @@
     <!-- MAIN WRAPPER -->
     <div class="main-container">
         
-        <!-- SECTION: FACEBOOK -->
+        <!-- SECTION: AKTUALNOŚCI -->
         <section id="aktualnosci">
             <div class="section-header" style="justify-content: center; text-align: center; flex-direction: column; gap: 8px;">
                 <h2 style="font-size: 1.9rem;">Aktualności</h2>
-                <p style="color: hsl(var(--text-muted)); font-size: 0.95rem;">Śledź najnowsze wydarzenia i relacje z naszego oficjalnego profilu Facebook:</p>
+                <p style="color: hsl(var(--text-muted)); font-size: 0.95rem;">Wydarzenia, fotorelacje ze strzelnicy i komunikaty statutowe:</p>
             </div>
             
-            <div class="fb-clean-card">
-                <!-- Oficjalna belka profilu z Facebooka (bez zacinającej się osi czasu) -->
-                <iframe 
-                    src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fskbppogranicznik%2F&tabs=&width=500&height=130&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" 
-                    class="fb-clean-frame"
-                    scrolling="no" 
-                    frameborder="0" 
-                    allowfullscreen="true" 
-                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
-                </iframe>
+            <div class="news-grid">
+                <!-- KAFELEK 1: TRENINGI I STRZELNICA -->
+                <article class="news-card">
+                    <div class="news-img-box">
+                        <img src="logo.png" alt="Treningi i zawody strzeleckie">
+                    </div>
+                    <div class="news-body">
+                        <span class="news-tag">Relacja & Zdjęcia</span>
+                        <h3>Treningi strzeleckie i zawody klubowe</h3>
+                        <p>Najnowsze relacje fotograficzne ze spotkań na Strzelnicy Chynowo, wyniki rywalizacji oraz harmonogramy najbliższych strzelań.</p>
+                        <a href="https://www.facebook.com/skbppogranicznik/" target="_blank" rel="noopener noreferrer" class="news-link">
+                            Zobacz galerię na Facebooku &rarr;
+                        </a>
+                    </div>
+                </article>
 
-                <!-- Panel przekierowujący do wpisów -->
-                <div class="fb-clean-content">
-                    <p>Najnowsze komunikaty, fotorelacje z zawodów oraz aktualności publikujemy bezpośrednio na naszym profilu:</p>
-                    <a href="https://www.facebook.com/skbppogranicznik/" target="_blank" rel="noopener noreferrer" class="fb-clean-btn">
-                        Zobacz posty na Facebooku &rarr;
-                    </a>
-                </div>
+                <!-- KAFELEK 2: KOLEKCJONERSTWO I UOBIA -->
+                <article class="news-card">
+                    <div class="news-img-box">
+                        <img src="logo.png" alt="Działalność kolekcjonerska">
+                    </div>
+                    <div class="news-body">
+                        <span class="news-tag">Komunikat</span>
+                        <h3>Kolekcjonerstwo broni i zaświadczenia</h3>
+                        <p>Informacje dla członków stowarzyszenia dotyczące procedur uzyskiwania zaświadczeń statutowych (Art. 10 UoBiA) oraz ochrony zabytków oręża.</p>
+                        <a href="https://www.facebook.com/skbppogranicznik/" target="_blank" rel="noopener noreferrer" class="news-link">
+                            Więcej informacji na profilu &rarr;
+                        </a>
+                    </div>
+                </article>
+            </div>
+
+            <!-- PRZYCISK PRZEJŚCIA DO OFICJALNEGO PROFILU -->
+            <div class="news-bottom-action">
+                <a href="https://www.facebook.com/skbppogranicznik/" target="_blank" rel="noopener noreferrer" class="news-main-fb-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    Przejdź do naszego profilu na Facebooku
+                </a>
             </div>
         </section>
 
@@ -285,19 +305,5 @@
         <p>Wszelkie prawa zastrzeżone.</p>
     </footer>
 
-    <!-- SKRYPT ZABEZPIECZAJĄCY PRZED ADBLOCKIEM -->
-    <script>
-      (function() {
-        const frame = document.querySelector('.fb-clean-frame');
-        if (!frame) return;
-
-        fetch('https://connect.facebook.net/pl_PL/sdk.js?check=' + Date.now(), { 
-            mode: 'no-cors' 
-        })
-        .catch(function() {
-            frame.style.display = 'none';
-        });
-      })();
-    </script>
 </body>
 </html>
